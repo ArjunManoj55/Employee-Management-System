@@ -10,7 +10,9 @@ const Login = ({handleLogin}) => {
     const [password, setPassword] = useState("")
 
     const handleSubmit = (e)=> {
+        
         e.preventDefault()
+        handleLogin(email,password) //this will be passed to parent which is app.jsx
         console.log("submitted")
     }
 
