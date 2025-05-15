@@ -1,32 +1,36 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import AdminDash from "./components/AdminDash";
 import EmployeeDash from "./components/EmployeeDash";
 import Login from "./components/Login";
-import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
 import { AuthContext } from "./context/AuthProvider";
 
 function App() {
   const [user, setUser] = useState('');
-
-  const authData = useContext(AuthContext)
-  console.log(authData)
+  const authData = useContext(AuthContext);
 
   const handleLogin = (email, password) => {
-    if (email === 'admin@example.com' && password === '123') {
+    // Check admin
+    if (
+      authData.admins.find(
+        (admin) => admin.email === email && admin.password === password
+      )
+    ) {
       setUser('admin');
-    } else if (authData && authData.employee.find((e)=>email ==e.email && e.password)) {
-      setUser('employee');
-    } else {
-      alert('invalid');
+      return;
     }
+
+    // Check employee
+    if (
+      authData.employees.find(
+        (employee) => employee.email === email && employee.password === password
+      )
+    ) {
+      setUser('employee');
+      return;
+    }
+
+    alert('Invalid credentials');
   };
-
-  useEffect(() => {
-    setLocalStorage();
-    getLocalStorage();
-  }, []);
-
-  
 
   return (
     <>

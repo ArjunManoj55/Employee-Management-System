@@ -77,13 +77,13 @@ const admins = [
   },
 ];
 
-//  Set localStorag
+// Seed localStorage
 export const setLocalStorage = () => {
-  localStorage.setItem("employees", JSON.stringify(employees)); // fixed typo
+  localStorage.setItem("employees", JSON.stringify(employees));
   localStorage.setItem("admins", JSON.stringify(admins));
 };
 
-//  Get localStorage 
+// Get localStorage data
 export const getLocalStorage = () => {
   const employees = JSON.parse(localStorage.getItem("employees")) || [];
   const admins = JSON.parse(localStorage.getItem("admins")) || [];
