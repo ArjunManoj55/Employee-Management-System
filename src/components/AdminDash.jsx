@@ -3,13 +3,12 @@ import Header from './Header';
 import CreateTask from './CreateTask';
 import TaskList from '../service/TaskList';
 
-const AdminDash = () => {
+const AdminDash = ({ handleLogout }) => {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <Header />
+      <Header handleLogout={handleLogout} />
       <CreateTask />
       <TaskList />
-      
     </div>
   );
 };
